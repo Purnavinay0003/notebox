@@ -1,0 +1,85 @@
+.flipper-container {
+  perspective: 1000px;
+  height: 450px;
+  max-width: 100%;
+  position: relative;
+}
+
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.flipper-container.flipping .flipper {
+  transform: rotateY(180deg);
+}
+
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.front {
+  transform: rotateY(0deg);
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.side.active {
+  z-index: 2;
+}
+
+/* Custom scrollbar */
+.side::-webkit-scrollbar {
+  width: 8px;
+}
+
+.side::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.side::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 4px;
+}
+
+.side::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}
+
+/* Paper texture background */
+.side::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("https://www.transparenttextures.com/patterns/notebook.png");
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .flipper-container {
+    height: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .flipper-container {
+    height: 550px;
+  }
+}
